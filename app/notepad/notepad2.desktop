@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Categories=Programming,Utilities
+Name=Notepad2
+Comment=light-weight Scintilla-based text editor.
+Icon=notepad2
+Exec=notepad2
+Terminal=false
+Type=Application

@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+app_name='notepadpp'
+exe_name='notepad++.exe'
+
+pkgdir="/usr/share/${app_name}"
+localdir="${HOME}/.local/share/${app_name}"
+configdir="${HOME}/.config/${app_name}"
+cachedir="${HOME}/.cache/${app_name}"
+
+for folder in "${localdir}" "${cachedir}" "${configdir}"; do
+    if [ ! -d "${folder}" ]; then
+        mkdir -p "${folder}"
+    fi
+done
+
+cleanup() {
+    until umount "${localdir}"; do
+            sleep 5
+    done
+}
+
+if mount | grep -q "${localdir}"; then
+    cleanup
+fi
+
+if ! fuse-overlayfs -o lowerdir="${pkgdir}" -o upperdir="${configdir}" -o workdir="${cachedir}" "${localdir}"; then
+    echo "ERROR: cannot mount fuse-overlayfs for ${app_name}"
+    exit 1
+fi
+
+trap 'cleanup' INT TERM EXIT
+
+if [ -n "${1}" ]; then
+    argpath="Z:\\$(readlink -f "${1}" | sed 's|/|\\\\|g')"
+fi
+
+unset WINEPREFIX
+WINEDLLOVERRIDES="${WINEDLLOVERRIDES};mscoree=d;mshtml=d" WINEDEBUG=-all wine "${localdir}/${exe_name}" "${argpath}"
