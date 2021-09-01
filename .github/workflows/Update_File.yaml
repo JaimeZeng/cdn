@@ -73,6 +73,3 @@ jobs:
           branch: ${{ github.ref }}
       - name: sendMessage
         run: bash sendMessage.sh updateMsg
-
-
-https://github.com/Keldos-Li/typora-latex-theme/releases/download/latest/latex-theme-macos.zip
