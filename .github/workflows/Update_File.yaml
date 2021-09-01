@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 */4 * * *"
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 env:
   TZ: Asia/Shanghai
