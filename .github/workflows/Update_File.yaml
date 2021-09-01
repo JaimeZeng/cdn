@@ -1,0 +1,78 @@
+name: Update File
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */4 * * *"
+  push:
+    branches:
+      - main
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal access token.
+          fetch-depth: 0 # otherwise, there would be errors pushing refs to the destination repository.
+      - name: Create local changes
+        run: |
+          cur_dir=$(cd $(dirname $0); pwd)
+          typora_theme="${cur_dir}/typora-theme"
+          obsidian_theme="${typora_theme}/obsidian"
+          cobalt_theme="${typora_theme}/cobalt"
+          cobalt_nunito="${cobalt_theme}/nunito"
+          wget_options='-q -c -N --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=20 -t 3 --no-check-certificate -O'
+          user_agent='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36'
+          aria2c_options='--split=8 --quiet=true --max-connection-per-server=8 --retry-wait=20 --timeout=20 --check-certificate=false --allow-overwrite=true -U "${user_agent}"'
+          apt-get install -y aria2
+
+          for folder in "${obsidian_theme}" "${cobalt_theme}" "${cobalt_nunito}"; do
+            if [ ! -d "${folder}" ]; then
+              mkdir -p "${folder}"
+            fi
+          done     
+          cd ${typora_theme}/            
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-ayu.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-black.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-dark.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-juejin.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-light.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-material.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-purple.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-vue.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian-day.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian-night.css
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt.css
+          cd ${obsidian_theme}/
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
+          cd ${cobalt_theme}/
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/splash.png
+          cd ${cobalt_nunito}/
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-ExtraBold.woff
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-ExtraBoldItalic.woff
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-Italic.woff
+          aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-Regular.woff
+      - name: Commit files
+        run: |
+          git config --local user.email "78083448+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          # git commit -am "Add changes."
+          git add .
+          git commit -m "Add changes."
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          branch: ${{ github.ref }}
+      - name: sendMessage
+        run: bash sendMessage.sh updateMsg
+
+
+https://github.com/Keldos-Li/typora-latex-theme/releases/download/latest/latex-theme-macos.zip
