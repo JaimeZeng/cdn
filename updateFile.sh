@@ -38,7 +38,7 @@ function update_typora_theme() {
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
     cd ${cobalt_theme}/
-    aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/splash.png
+    # aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/splash.png
     cd ${cobalt_nunito}/
     aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-ExtraBold.woff
     aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt/nunito/NunitoSans-ExtraBoldItalic.woff
