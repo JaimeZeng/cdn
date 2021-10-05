@@ -1,0 +1,87 @@
+name: Sync
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Mirror the GitHub repos to CSDN
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@codechina.csdn.net:qq_36568192/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to Gitee
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@gitee.com:hellozxj/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to tencent-code
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@git.code.tencent.com:JaimeZeng/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to Coding
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@e.coding.net:zxjna/cdn/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to Bitbucket
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@bitbucket.org:ryanjiena/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to ali-code
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@code.aliyun.com:Ryanjie/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      - name: Mirror the GitHub repos to codeup
+        uses: wei/git-sync@v3
+        with:
+          source_repo: "JaimeZeng/cdn"
+          source_branch: "main"
+          destination_repo: "git@codeup.aliyun.com:615af17090f3ca58306f4a2b/cdn.git"
+          destination_branch: "main"
+          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
