@@ -2,3 +2,5 @@
 config/cf.sh
 action.tmp
 debug.sh
+install_gh_secret.sh
+GITEE_PRIVATE_KEY
