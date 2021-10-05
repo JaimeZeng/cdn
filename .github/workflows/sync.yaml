@@ -25,16 +25,16 @@ jobs:
           ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-      - name: Mirror the GitHub repos to tencent-code
-        uses: wei/git-sync@v3
-        with:
-          source_repo: "JaimeZeng/cdn"
-          source_branch: "main"
-          destination_repo: "git@git.code.tencent.com:JaimeZeng/cdn.git"
-          destination_branch: "main"
-          ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-          source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
-          destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      # - name: Mirror the GitHub repos to tencent-code
+      #   uses: wei/git-sync@v3
+      #   with:
+      #     source_repo: "JaimeZeng/cdn"
+      #     source_branch: "main"
+      #     destination_repo: "git@git.code.tencent.com:JaimeZeng/cdn.git"
+      #     destination_branch: "main"
+      #     ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      #     source_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
+      #     destination_ssh_private_key: ${{ secrets.GITEE_PRIVATE_KEY }}
       - name: Mirror the GitHub repos to Coding
         uses: wei/git-sync@v3
         with:
