@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@import url(./drake/font.css);
 
 :root {
     --monospace: "JetBrains Mono", HYZhengYuan, "Fira Code", Menlo, "Ubuntu Mono", Consolas; /*code font*/
@@ -28,6 +29,7 @@
     --item-hover-bg-color: #E5E5E596;
     --active-file-bg-color: var(--item-hover-bg-color);
 
+    --blur-text-color: rgba(51, 51, 51, 0.5);
     --drake-accent: #e95f59;
     --drake-highlight: #d63200;
     --a-color: var(--drake-highlight);
@@ -83,6 +85,11 @@ body {
     background-color: var(--code-block-bg-color);
     color: var(--code-block-color);
     border: none;
+}
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) *,
+.on-focus-mode .md-fences.md-focus .CodeMirror-code > :not(.CodeMirror-activeline) *,
+.on-focus-mode .md-htmlblock.md-focus .CodeMirror-code > :not(.CodeMirror-activeline) * {
+    color: #909090 !important
 }
 
 /*mermaid*/
@@ -218,7 +225,11 @@ blockquote {
     color: var(--a-color);
     text-decoration: none;
 }
-#write a .md-plain, .md-htmlblock-container a:hover {
+.on-focus-mode #write a .md-plain, .on-focus-mode .md-htmlblock-container a:hover {
+    border-bottom: .1rem solid var(--blur-text-color);
+}
+#write a .md-plain, .md-htmlblock-container a:hover,
+.on-focus-mode #write .md-focus a .md-plain, .md-focus .md-htmlblock-container a:hover {
     border-bottom: .1rem solid var(--a-color);
 }
 [md-inline=link] a {
@@ -298,6 +309,9 @@ h2.md-end-block.md-heading:after {
     margin-top: 4px;
     background-color: var(--h2-underline-color);
     border-radius: 2px;
+}
+.on-focus-mode h2.md-end-block.md-heading:not(.md-focus):not(.md-focus-container):after {
+    background-color: var(--blur-text-color) !important;
 }
 
 h3 {

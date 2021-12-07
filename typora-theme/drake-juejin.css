@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@import url(./drake/font.css);
 
 :root {
     --monospace: "JetBrains Mono", HYZhengYuan, "Fira Code", Menlo, "Ubuntu Mono", Consolas; /*code font*/
@@ -28,6 +29,7 @@
     --item-hover-bg-color: #E5E5E596;
     --active-file-bg-color: var(--item-hover-bg-color);
 
+    --blur-text-color: rgba(51, 51, 51, 0.5);
     --drake-accent: #e95f59;
     --drake-highlight: #d63200;
     --a-color: #036aca;
@@ -72,6 +74,32 @@ body {
     margin: 0;
     overflow-x: hidden;
     line-height: 1.8rem;
+}
+
+#write {
+    background-image: linear-gradient(
+            90deg
+            ,rgba(60,10,30,.04) 3%,transparent 0),linear-gradient(
+            1turn
+            ,rgba(60,10,30,.04) 3%,transparent 0);
+    background-size: 20px 20px;
+    background-position: 50%;
+}
+
+/*code block*/
+.md-fences {
+    font-size: 1rem;
+    padding: 0.5rem !important;
+    border-radius: 2px;
+    word-wrap: normal;
+    background-color: var(--code-block-bg-color);
+    color: var(--code-block-color);
+    border: none;
+}
+.on-focus-mode .CodeMirror.cm-s-inner:not(.CodeMirror-focused) *,
+.on-focus-mode .md-fences.md-focus .CodeMirror-code > :not(.CodeMirror-activeline) *,
+.on-focus-mode .md-htmlblock.md-focus .CodeMirror-code > :not(.CodeMirror-activeline) * {
+    color: #909090 !important
 }
 
 /*mermaid*/
@@ -130,27 +158,6 @@ body {
     fill: var(--bg-color) !important;
 }
 pre.md-fences-advanced.md-focus .md-fences-adv-panel {
-    border: none;
-}
-
-#write {
-    background-image: linear-gradient(
-            90deg
-            ,rgba(60,10,30,.04) 3%,transparent 0),linear-gradient(
-            1turn
-            ,rgba(60,10,30,.04) 3%,transparent 0);
-    background-size: 20px 20px;
-    background-position: 50%;
-}
-
-/*code block*/
-.md-fences {
-    font-size: 1rem;
-    padding: 0.5rem !important;
-    border-radius: 2px;
-    word-wrap: normal;
-    background-color: var(--code-block-bg-color);
-    color: var(--code-block-color);
     border: none;
 }
 
@@ -231,7 +238,11 @@ blockquote {
     color: var(--a-color);
     text-decoration: none;
 }
-#write a .md-plain, .md-htmlblock-container a:hover {
+.on-focus-mode #write a .md-plain, .on-focus-mode .md-htmlblock-container a:hover {
+    border-bottom: .1rem solid var(--blur-text-color);
+}
+#write a .md-plain, .md-htmlblock-container a:hover,
+.on-focus-mode #write .md-focus a .md-plain, .md-focus .md-htmlblock-container a:hover {
     border-bottom: .1rem solid var(--a-color);
 }
 [md-inline=link] a {
@@ -311,6 +322,9 @@ h2.md-end-block.md-heading:after {
     margin-top: 4px;
     background-color: var(--h2-underline-color);
     border-radius: 2px;
+}
+.on-focus-mode h2.md-end-block.md-heading:not(.md-focus):not(.md-focus-container):after {
+    background-color: var(--blur-text-color) !important;
 }
 
 h3 {

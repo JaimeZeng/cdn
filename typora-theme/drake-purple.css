@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@import url(./drake/font.css);
 
 :root {
     --monospace: "JetBrains Mono", HYZhengYuan, "Fira Code", Menlo, "Ubuntu Mono", Consolas; /*code font*/
     --text-font: var(--monospace); /*default font*/
     --title-font: var(--monospace); /*title font*/
 
-    --bg-color: #282838;
     --text-color: #acb7c4;
+    --bg-color: #282838;
     --control-text-color: var(--text-color);
     --meta-content-color: var(--text-color);
     --active-file-border-color: var(--drake-accent);
@@ -29,6 +30,7 @@
     --active-file-bg-color: var(--item-hover-bg-color);
     --mermaid-theme: night;
 
+    --blur-text-color: rgba(172, 183, 196, 0.5);
     --md-char-color: #535455;
     --side-bar-bg-color: var(--bg-color);
     --search-select-bg-color: #ffffff;
@@ -226,7 +228,11 @@ blockquote {
     color: var(--a-color);
     text-decoration: none;
 }
-#write a .md-plain, .md-htmlblock-container a:hover {
+.on-focus-mode #write a .md-plain, .on-focus-mode .md-htmlblock-container a:hover {
+    border-bottom: .1rem solid var(--blur-text-color);
+}
+#write a .md-plain, .md-htmlblock-container a:hover,
+.on-focus-mode #write .md-focus a .md-plain, .md-focus .md-htmlblock-container a:hover {
     border-bottom: .1rem solid var(--a-color);
 }
 [md-inline=link] a {
@@ -306,6 +312,9 @@ h2.md-end-block.md-heading:after {
     margin-top: 4px;
     background-color: var(--h2-underline-color);
     border-radius: 2px;
+}
+.on-focus-mode h2.md-end-block.md-heading:not(.md-focus):not(.md-focus-container):after {
+    background-color: var(--blur-text-color) !important;
 }
 
 h3 {
