@@ -73,7 +73,6 @@ body {
     letter-spacing: 0;
     margin: 0;
     overflow-x: hidden;
-    line-height: 1.8rem;
 }
 
 /*code block*/
@@ -277,10 +276,6 @@ img {
     max-width: 1200px;
 }
 
-#write p {
-    word-spacing: .05rem;
-}
-
 #write > ul:first-child,
 #write > ol:first-child {
     margin-top: 30px;
@@ -305,6 +300,7 @@ h6 {
     margin-top: 2rem;
     margin-bottom: 1rem;
     font-weight: bold;
+    line-height: 1.4;
     cursor: text;
     color: var(--title-color);
 }
@@ -391,15 +387,13 @@ h6 code {
     font-size: inherit !important;
 }
 
+p,
 blockquote,
 ul,
 ol,
 dl,
 table {
     margin: 0.8em 0;
-}
-p {
-    margin: 0;
 }
 
 li > ol,
@@ -569,6 +563,7 @@ kbd {
 #write pre.md-meta-block {
     padding: 1rem;
     font-size: 1rem;
+    line-height: 1.45;
     background-color: var(--yaml-bg-color);
     border: 0;
     border-radius: 2px;
