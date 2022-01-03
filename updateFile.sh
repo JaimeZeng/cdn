@@ -16,7 +16,7 @@ aria2c_options='--split=8 --quiet=true --max-connection-per-server=8 --retry-wai
 # aria2c_options='--split=8 --max-connection-per-server=8 --retry-wait=20 --timeout=20 --check-certificate=false --allow-overwrite=true --all-proxy=http://127.0.0.1:8889 -U "${user_agent}"'
 
 function update_typora_theme() {
-    for folder in "${drake_theme}" ${obsidian_theme}" "${cobalt_theme}" "${cobalt_nunito}"; do
+    for folder in "${drake_theme}" "${obsidian_theme}" "${cobalt_theme}" "${cobalt_nunito}"; do
         if [ ! -d "${folder}" ]; then
             mkdir -p "${folder}"
         fi
