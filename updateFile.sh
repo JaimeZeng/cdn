@@ -6,6 +6,7 @@ cur_dir=$(
     pwd
 )
 typora_theme="${cur_dir}/typora-theme"
+drake_theme="${typora_theme}/drake"
 obsidian_theme="${typora_theme}/obsidian"
 cobalt_theme="${typora_theme}/cobalt"
 cobalt_nunito="${cobalt_theme}/nunito"
@@ -15,7 +16,7 @@ aria2c_options='--split=8 --quiet=true --max-connection-per-server=8 --retry-wai
 # aria2c_options='--split=8 --max-connection-per-server=8 --retry-wait=20 --timeout=20 --check-certificate=false --allow-overwrite=true --all-proxy=http://127.0.0.1:8889 -U "${user_agent}"'
 
 function update_typora_theme() {
-    for folder in "${obsidian_theme}" "${cobalt_theme}" "${cobalt_nunito}"; do
+    for folder in "${drake_theme}" ${obsidian_theme}" "${cobalt_theme}" "${cobalt_nunito}"; do
         if [ ! -d "${folder}" ]; then
             mkdir -p "${folder}"
         fi
@@ -25,6 +26,7 @@ function update_typora_theme() {
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-ayu.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-black.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-dark.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-google.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-juejin.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-light.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake-material.css
@@ -34,6 +36,18 @@ function update_typora_theme() {
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian-day.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian-night.css
     aria2c ${aria2c_options} https://raw.githubusercontent.com/elitistsnob/typora-cobalt-theme/master/cobalt.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple-blue.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple-cesno.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple-classic.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple-green.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple-plain.css
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/hliu202/typora-purple-theme/master/purple.css
+    cd ${drake_theme}/
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake/JetBrainsMono-Bold.woff2
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake/JetBrainsMono-BoldItalic.woff2
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake/JetBrainsMono-Italic.woff2
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake/JetBrainsMono-Regular.woff2
+    aria2c ${aria2c_options} https://raw.githubusercontent.com/liangjingkanji/DrakeTyporaTheme/master/drake/font.css
     cd ${obsidian_theme}/
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
     aria2c ${aria2c_options} https://raw.githubusercontent.com/bennyxguo/typora-theme-obsidian/master/obsidian/Rubik-Bold-kern-latin.woff2
