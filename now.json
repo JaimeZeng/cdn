@@ -2,7 +2,7 @@
     "redirects": [
         {
             "source": "/Jsnzkpg",
-            "destination": "https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgithub.com%2FJsnzkpg%2FJsnzkpg%2Fraw%2FJsnzkpg%2FJsnzkpg&list=true"
+            "destination": "https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgithub.com%2FJsnzkpg%2FJsnzkpg%2Fraw%2FJsnzkpg%2FJsnzkpg&exclude=YouTube&list=true"
         },
         {
             "source": "/GreenFishYYDS",
