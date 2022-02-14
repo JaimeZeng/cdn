@@ -6,7 +6,7 @@
         },
         {
             "source": "/GreenFishYYDS",
-            "destination": "https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgithub.com%2FThekingMX1998%2Ffree-v2ray-code%2Fraw%2Fmaster%2FSubscription%2FGreenFishYYDS&list=true"
+            "destination": "https://api.v1.mk/sub?target=clash&url=https%3A%2F%2Fgithub.com%2FThekingMX1998%2Ffree-v2ray-code%2Fraw%2Fmaster%2FSubscription%2FGreenFishYYDS&exclude=payday&list=true"
         },
         {
             "source": "/(.*)",
